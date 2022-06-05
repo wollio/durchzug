@@ -1,0 +1,15 @@
+<nav class="w-full flex font-sans gap-4 justify-center mt-32 text-2xl" role="navigation" style="font-feature-settings: 'frac' on;">
+  {{^if prev}}
+    <span class="text-gray-400">&larr;</span>
+  {{else}}
+    <a href="{{page_url prev}}">&larr;</a>
+  {{/if}}
+
+  <span class="mt-0.5">{{page}}/{{pages}}</span>
+  {{^if next}}
+    <span class="text-gray-400">&rarr;</span>
+    {{else}}
+    <a href="{{page_url next}}">&rarr;</a>
+  {{/if}}
+
+</nav>

@@ -1,0 +1,623 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .wavy {
+    text-decoration-style: wavy;
+  }
+}
+
+@font-face {
+  font-family: "Euclid Circular B";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/EuclidCircularB-Regular-WebXL.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: "Euclid Circular B";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/EuclidCircularB-Medium-WebXL.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: "Euclid Circular B";
+  font-style: normal;
+  font-weight: 600;
+  src: url("../fonts/EuclidCircularB-Semibold-WebXL.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: "Euclid Circular B";
+  font-style: italic;
+  font-weight: 600;
+  src: url("../fonts/EuclidCircularB-SemiboldItalic-WebXL.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: "Euclid Circular B";
+  font-style: normal;
+  font-weight: bold;
+  src: url("../fonts/EuclidCircularB-Bold-WebXL.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: "Suisse Neue";
+  font-style: normal;
+  font-weight: normal;
+  src: url("../fonts/SuisseNeue-Regular-WebXL.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: "Suisse Neue";
+  font-style: normal;
+  font-weight: 500;
+  src: url("../fonts/SuisseNeue-Medium-WebXL.woff2") format('woff2');
+}
+
+@font-face {
+  font-family: "Suisse Neue";
+  font-style: normal;
+  font-weight: 700;
+  src: url("../fonts/SuisseNeue-Medium-WebXL.woff2") format('woff2');
+}
+
+.menu {
+  background-image: url("../icons/menu-icon.svg");
+  width: 1.6rem;
+  height: 1.6rem;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.nav-current {
+  @apply underline wavy text-green-500;
+}
+
+#primaryNavigation.open {
+  @apply shadow-2xl bg-gray-50 px-4 py-2
+}
+
+#primaryNavigation.open > #nav-items {
+  @apply flex flex-col sm:flex-row
+}
+
+#primaryNavigation.open > button {
+  background-image: url("../icons/menu-close.svg");
+}
+.vh-2-3 {
+  height: 66vh;
+}
+
+.text-2-3-vh {
+  font-size: 60vh;
+}
+
+.no-underline-important {
+  text-decoration: none !important;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "case";
+}
+
+.newNav {
+  --wave: black;
+  --swave: transparent;
+  background: radial-gradient(circle at 50% 130%, var(--swave) 25%, var(--wave) 25%, var(--wave) 40%, var(--swave) 20%, var(--swave)), radial-gradient(circle at 50% -30%, var(--swave) 25%, var(--wave) 25%, var(--wave) 40%, var(--swave) -50%, var(--swave)) 15px -37px;
+  background-size: 30px 20px;
+  background-position-y: 0.4rem;
+  background-blend-mode: darken;
+  mix-blend-mode: difference;
+}
+
+.newNav .newNavBar {
+
+}
+
+.newNav .newNavBar a {
+  background: white;
+  color: black;
+  padding: 0.2rem 0.4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 20rem;
+  background-blend-mode: difference;
+}
+
+.tag {
+  @apply text-green-500 font-sans uppercase hover:text-green-600
+}
+
+/*sm*/
+@screen sm {
+  html {
+    font-size: calc(16px + 6 * ((100vw - 576px) / 680));
+  }
+}
+
+/*lg*/
+@screen lg {
+  html {
+    font-size: 22px;
+  }
+}
+
+/**
+ Tailwind CSS layers
+ */
+@layer base {
+  h1 {
+    @apply text-2xl font-bold;
+  }
+  h2 {
+    @apply text-xl font-bold;
+  }
+  h3 {
+    @apply text-lg font-bold;
+  }
+}
+
+/* GHOST
+/* ---------------------------------------------------------- */
+
+/* -------- */
+
+/* Content grid
+/* ---------------------------------------------------------- */
+
+/* Canvas creates a multi-column, centered grid which the post
+is laid out on top of. Canvas just defines the grid, we don't
+use it for applying any other styles. */
+
+.gh-canvas {
+  display: grid;
+  grid-template-columns:
+        [full-start]
+        minmax(4vmin, auto)
+            [wide-start]
+            minmax(auto, 240px)
+                [main-start]
+                    min(720px, calc(100% - 8vw))
+                [main-end]
+            minmax(auto, 240px)
+            [wide-end]
+        minmax(4vmin, auto)
+        [full-end]
+;
+}
+
+.gh-canvas > * {
+  grid-column: main-start / main-end;
+}
+
+.kg-width-wide {
+  grid-column: wide-start / wide-end;
+}
+
+.kg-width-full {
+  grid-column: full-start / full-end;
+}
+
+.kg-width-full img {
+  width: 100%;
+}
+
+
+/* Content
+/* ---------------------------------------------------------- */
+
+/* Content refers to styling all page and post content that is
+created within the Ghost editor. The main content handles
+headings, text, images and lists. We deal with cards lower down. */
+
+/* Default vertical spacing */
+.gh-content > * + * {
+  margin-top: 4vmin;
+  margin-bottom: 0;
+}
+
+/* [id] represents all headings h1-h6, reset all margins */
+.gh-content > [id] {
+  margin: 0;
+  @apply text-gray-800;
+}
+
+/* Add back a top margin to all headings, unless a heading
+is the very first element in the post content */
+.gh-content > [id]:not(:first-child) {
+  margin: 2em 0 0;
+}
+
+/* Add a small margin between a heading and anything after it */
+.gh-content > [id] + * {
+  margin-top: 1.5rem !important;
+}
+
+/* A larger margin before/after HRs and blockquotes */
+.gh-content > hr,
+.gh-content > blockquote {
+  position: relative;
+  margin-top: 6vmin;
+}
+.gh-content > hr + *,
+.gh-content > blockquote + * {
+  margin-top: 6vmin !important;
+}
+
+/* Now the content typography styles */
+.gh-content a {
+  text-decoration: underline;
+  word-break: break-word;
+}
+
+.gh-content > blockquote,
+.gh-content > ol,
+.gh-content > ul,
+.gh-content > dl,
+.gh-content > p {
+  font-weight: 400;
+  line-height: 1.6em;
+}
+
+.gh-content > ul,
+.gh-content > ol,
+.gh-content > dl {
+  padding-left: 0.85em;
+  list-style: initial;
+}
+
+.gh-content > blockquote {
+  position: relative;
+  font-style: italic;
+  padding: 0;
+}
+
+.gh-content > blockquote::before {
+  content: "";
+  position: absolute;
+  left: -1.5em;
+  top: 0;
+  bottom: 0;
+  width: 0.3rem;
+}
+
+.gh-content :not(pre) > code {
+  vertical-align: middle;
+  padding: 0.15em 0.4em 0.15em;
+  border: #e1eaef 1px solid;
+  font-weight: 400 !important;
+  line-height: 1em;
+  color: #15171A;
+  background: #f0f6f9;
+  border-radius: 0.25em;
+}
+
+.gh-content pre {
+  overflow: auto;
+  padding: 16px 20px;
+  @apply bg-gray-800 text-gray-200 text-sm rounded;
+  line-height: 1.5em;
+  box-shadow: 0 2px 6px -2px rgba(0,0,0,.1), 0 0 1px rgba(0,0,0,.4);
+}
+
+@media (max-width: 650px) {
+  .gh-content blockquote::before {
+    left: -4vmin;
+  }
+}
+
+/* Cards
+/* ---------------------------------------------------------- */
+
+/* Cards are dynamic blocks of content which appear within Ghost
+posts, for example: embedded videos, tweets, galleries, or
+specially styled bookmark links. We add extra styling here to
+make sure they look good, and are given a bit of extra spacing. */
+
+/* Add extra margin before/after any cards,
+except for when immediately preceeded by a heading */
+.gh-content :not(.kg-card):not([id]) + .kg-card {
+  margin-top: 6vmin;
+  margin-bottom: 0;
+}
+.gh-content .kg-card + :not(.kg-card) {
+  margin-top: 6vmin;
+  margin-bottom: 0;
+}
+
+/* This keeps small embeds centered */
+.kg-embed-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* This keeps small iamges centered */
+.kg-image-card img {
+  margin: auto;
+}
+
+
+/* Captions */
+figcaption {
+  @apply text-xs leading-none text-gray-500 text-center mt-4;
+}
+
+/* Highly specific styles for traditional Instagram embeds */
+iframe.instagram-media {
+  margin-top: 6vmin !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 0 !important;
+}
+
+iframe.instagram-media + script + :not([id]) {
+  margin-top: 6vmin;
+}
+
+
+/* Galleries
+/* ---------------------------------------------------------- */
+
+/* When there galleries are mixed with images, reduce margin
+between them, so it looks like 1 big gallery */
+.kg-image-card + .kg-gallery-card,
+.kg-gallery-card + .kg-image-card,
+.kg-gallery-card + .kg-gallery-card {
+  margin-top: 0.75em;
+}
+
+.kg-image-card.kg-card-hascaption + .kg-gallery-card,
+.kg-gallery-card.kg-card-hascaption + .kg-image-card,
+.kg-gallery-card.kg-card-hascaption + .kg-gallery-card {
+  margin-top: 1.75em;
+}
+
+.kg-gallery-container {
+  position: relative;
+}
+
+.kg-gallery-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.kg-gallery-image img {
+  display: block;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kg-gallery-row:not(:first-of-type) {
+  margin: 0.75em 0 0 0;
+}
+
+.kg-gallery-image:not(:first-of-type) {
+  margin: 0 0 0 0.75em;
+}
+
+
+/* Bookmark Cards
+/* ---------------------------------------------------------- */
+
+/* These are styled links with structured data, similar to a
+Twitter card. These styles roughly match what you see in the
+Ghost editor. */
+
+.kg-bookmark-card,
+.kg-bookmark-card * {
+  box-sizing: border-box;
+}
+
+.kg-bookmark-card,
+.kg-bookmark-publisher {
+  position: relative;
+  width: 100%;
+}
+
+.kg-bookmark-card a.kg-bookmark-container,
+.kg-bookmark-card a.kg-bookmark-container:hover {
+  display: flex;
+  text-decoration: none;
+  border-radius: 3px;
+  border: 1px solid rgb(124 139 154 / 25%);
+  overflow: hidden;
+  color: inherit;
+}
+
+.kg-bookmark-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.kg-bookmark-title {
+  font-size: 1.5rem;
+  line-height: 1.4em;
+  font-weight: 600;
+}
+
+.kg-bookmark-description {
+  display: -webkit-box;
+  margin-top: 3px;
+  font-weight: 400;
+  overflow-y: hidden;
+  opacity: 0.7;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.kg-bookmark-metadata {
+  display: flex;
+  align-items: center;
+  margin-top: 22px;
+  width: 100%;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.kg-bookmark-metadata > *:not(img) {
+  opacity: 0.7;
+}
+
+.kg-bookmark-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 6px;
+}
+
+.kg-bookmark-author,
+.kg-bookmark-publisher {
+  display: inline;
+}
+
+.kg-bookmark-publisher {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 240px;
+  white-space: nowrap;
+  display: block;
+  line-height: 1.65em;
+}
+
+.kg-bookmark-metadata > span:nth-of-type(2) {
+  font-weight: 400;
+}
+
+.kg-bookmark-metadata > span:nth-of-type(2):before {
+  content: "•";
+  margin: 0 6px;
+}
+
+.kg-bookmark-metadata > span:last-of-type {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kg-bookmark-thumbnail {
+  position: relative;
+  flex-grow: 1;
+  min-width: 33%;
+}
+
+.kg-bookmark-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 0 2px 2px 0;
+}
+
+
+/* Card captions
+/* ---------------------------------------------------------- */
+
+.kg-width-full.kg-card-hascaption {
+  display: grid;
+  grid-template-columns: inherit;
+}
+
+.kg-width-wide.kg-card-hascaption img {
+  grid-column: wide-start / wide-end;
+}
+.kg-width-full.kg-card-hascaption img {
+  grid-column: 1 / -1;
+}
+
+.kg-width-full.kg-card-hascaption figcaption {
+  grid-column: main-start / main-end;
+}
+
+.article-comments {
+  margin: 6vmin 0 0 0;
+}
+
+/* -----old------ */
+
+.footnotes-sep {
+  margin-bottom: 30px;
+}
+
+.footnotes {
+  font-size: 1.5rem;
+}
+
+.footnotes p {
+  margin: 0;
+}
+
+.footnote-backref {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+/* Tables */
+.post-full-content table {
+  @apply font-sans;
+  display: inline-block;
+  overflow-x: auto;
+  margin: 0.5em 0 2.5em;
+  max-width: 100%;
+  width: auto;
+  border-spacing: 0;
+  border-collapse: collapse;
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+.post-full-content table {
+  -webkit-overflow-scrolling: touch;
+  background: radial-gradient(ellipse at left, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%) 0 center, radial-gradient(ellipse at right, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%) 100% center;
+  background-attachment: scroll, scroll;
+  background-size: 10px 100%, 10px 100%;
+  background-repeat: no-repeat;
+}
+
+.post-full-content table td:first-child {
+  background-image: linear-gradient(to right, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
+  background-size: 20px 100%;
+  background-repeat: no-repeat;
+}
+
+.post-full-content table td:last-child {
+  background-image: linear-gradient(to left, rgba(255,255,255, 1) 50%, rgba(255,255,255, 0) 100%);
+  background-position: 100% 0;
+  background-size: 20px 100%;
+  background-repeat: no-repeat;
+}
+
+.post-full-content table th {
+  color: var(--color-darkgrey);
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  text-align: left;
+  text-transform: uppercase;
+  background-color: color-mod(var(--color-wash) l(+4%));
+}
+
+.post-full-content table th,
+.post-full-content table td {
+  padding: 6px 12px;
+  border: color-mod(var(--color-wash) l(-1%) s(-5%)) 1px solid;
+}

@@ -1,0 +1,8 @@
+<div id="nav-items" class="justify-end gap-2 py-1 sm:gap-8 min-w-full col-span-2 hidden sm:flex">
+  {{#foreach navigation}}
+    <a href="{{url abFsolute="true"}}" class="{{link_class for=(url) class=(concat "nav-" slug)}} text-black font-medium" aria-current="page">
+      {{label}}
+    </a>
+  {{/foreach}}
+</div>
+

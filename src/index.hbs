@@ -1,0 +1,16 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+<main id="site-main">
+    <div class="md:container px-4 md:px-0 mx-auto mt-32 mb-32 font-serif">
+        <div class="grid grid-cols-1 md:grid-cols-3 grid-flow-row-dense gap-12">
+            {{!-- Iterate through each posts --}}
+            {{#foreach posts columns="3"}}
+
+              {{> "post"}}
+
+            {{/foreach}}
+        </div>
+        {{pagination}}
+    </div>
+</main>
