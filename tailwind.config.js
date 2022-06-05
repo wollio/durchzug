@@ -4,10 +4,14 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontFamily: {
-      'sans': ['Euclid Circular B', 'Arial', 'sans-serif'],
-      'serif': ['Suisse Neue', 'serif']
+      'sans': ['FUNGIS', 'Arial', 'sans-serif'],
+      'serif': ['serif']
     },
-    extend: {},
+    extend: {
+      colors: {
+        'blue': '#0029FF',
+      },
+    },
   },
   variants: {
     extend: {

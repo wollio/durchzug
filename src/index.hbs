@@ -2,7 +2,21 @@
 {{!-- The tag above means: insert everything in this file
 into the {body} of the default.hbs template --}}
 <main id="site-main">
-    <div class="md:container px-4 md:px-0 mx-auto mt-32 mb-32 font-serif">
+    {{#if @site.cover_image}}
+        <div class="h-full w-full flex items-center justify-center relative">
+            <img class="site-header-cover top-0 left-0 w-screen object-cover h-screen"
+                 srcset="{{img_url @site.cover_image size="s"}} 300w,
+                        {{img_url @site.cover_image size="m"}} 600w,
+                        {{img_url @site.cover_image size="l"}} 1000w,
+                        {{img_url @site.cover_image size="xl"}} 2000w"
+                 sizes="100vw"
+                 src="{{img_url @site.cover_image size="xl"}}"
+                 alt="{{@site.title}}"
+            />
+            <h1 class="text-white text-5xl md:text-9xl absolute">{{@site.title}}</h1>
+        </div>
+    {{/if}}
+    <div class="md:container px-12 mx-auto mt-32 mb-32">
         <div class="grid grid-cols-1 md:grid-cols-3 grid-flow-row-dense gap-12">
             {{!-- Iterate through each posts --}}
             {{#foreach posts columns="3"}}

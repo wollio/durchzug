@@ -14,9 +14,6 @@ module.exports = {
     filename: '[name].js',
     clean: true,
   },
-  experiments: {
-    asset: true
-  },
   //watch: true,
   watchOptions: {
     ignored: [path.resolve(__dirname, 'dist')],

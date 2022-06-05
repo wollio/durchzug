@@ -10,9 +10,7 @@ import './partials/post.hbs';
 import './partials/pagination.hbs';
 
 import './index.hbs';
-import './portfolio.hbs';
 import './post.hbs';
-import './page-about.hbs';
 import './tag.hbs';
 
 console.log("hi :)");
@@ -33,24 +31,6 @@ window.onload = function () {
 
   refreshFsLightbox();
 }
-
-let ticking = false;
-
-document.addEventListener('scroll', function(e) {
-  if (!ticking) {
-    window.requestAnimationFrame(function() {
-      if (window.scrollY > 20) {
-        primaryNavigation.classList.add(...addClasses);
-        primaryNavigation.classList.remove('bg-white');
-      } else {
-        primaryNavigation.classList.remove(...addClasses);
-        primaryNavigation.classList.add('bg-white');
-      }
-      ticking = false;
-    });
-    ticking = true;
-  }
-});
 
 let primaryNavigation = document.getElementById('primaryNavigation');
 primaryNavigation.getElementsByTagName('button')[0].addEventListener('click', function () {
